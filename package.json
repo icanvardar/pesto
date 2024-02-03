@@ -1,17 +1,34 @@
 {
   "name": "pesto",
   "module": "index.ts",
-  "type": "module",
+  "devDependencies": {
+    "@swc/cli": "^0.3.6",
+    "@swc/core": "^1.3.107",
+    "@tsconfig/node18": "^18.2.2",
+    "@types/node": "^20.11.16",
+    "chokidar": "^3.5.3",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.3",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
   "bin": {
     "pesto": "out/index.js"
   },
   "scripts": {
-    "build": "bun run build.mjs"
+    "start": "node out/index.js",
+    "dev": "concurrently \"pnpm run watch:compile\" \"pnpm run watch:dev\"",
+    "watch:compile": "swc ./index.ts -w -d out",
+    "watch:dev": "nodemon --watch \"out/**/*\" -e js ./out/index.js",
+    "build": "swc ./index.ts -d out && sh src/tasks/put_shebang_line.sh out/index.js"
   },
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  }
+  "type": "module",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
