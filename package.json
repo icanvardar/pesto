@@ -6,7 +6,7 @@
     "pesto": "out/index.js"
   },
   "scripts": {
-    "build": "bun run build.mjs && src/tasks/shebang-line.sh ./out/index.js"
+    "build": "bun run build.mjs"
   },
   "devDependencies": {
     "@types/bun": "latest"
