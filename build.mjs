@@ -1,9 +1,11 @@
+import { $ } from "bun";
+
 const result = await Bun.build({
   entrypoints: ["./index.ts"],
   outdir: "./out",
   target: "node",
   splitting: true,
-  root: "."
+  root: ".",
 });
 
 if (!result.success) {
@@ -12,5 +14,5 @@ if (!result.success) {
     console.error(message);
   }
 } else {
-  console.log(result.outputs[0]);
+  await $`sh ./src/tasks/put_shebang_line.sh ./out/index.js`;
 }
