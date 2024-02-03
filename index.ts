@@ -1,11 +1,12 @@
 import { execSync, spawn, spawnSync } from "child_process";
 import { parseArgs } from "util";
 import path from "path";
+import { existsSync, mkdirSync } from "fs";
 
 type TemplateType = "basic" | "typescript";
 
 interface Args {
-  path: string;
+  projectPath: string;
   template: TemplateType;
   verbose: boolean;
 }
@@ -13,12 +14,9 @@ interface Args {
 // generate path from positionals
 function generatePath(pathToCheck: string) {
   try {
-    const result = execSync(`./src/tasks/is_path.sh "${pathToCheck}"`, {
-      encoding: "utf-8",
-    });
-    return path.resolve(result.trim() === "false" ? pathToCheck : result);
+    return path.resolve(pathToCheck);
   } catch (error) {
-    console.error("Error executing shell script:", error);
+    console.error("Error occured while generating path:", error);
     process.exit(1);
   }
 }
@@ -44,17 +42,24 @@ async function getArguments(): Promise<Args> {
 
   const { template, verbose } = values;
 
-  const path = generatePath(positionals[0]);
+  const projectPath = generatePath(positionals[0]);
 
   return {
-    path: path!,
+    projectPath: projectPath!,
     template: template! as TemplateType,
     verbose: verbose!,
   };
 }
 
-async function init() {
-  console.log(await getArguments());
+// prepare path
+function preparePath(projectPath: string) {
+  const folderExist = existsSync(projectPath);
+
+  if (!folderExist) {
+    mkdirSync(projectPath);
+  } else {
+    execSync(`rm -rf ${projectPath}/*`);
+  }
 }
 
 // validate template
@@ -78,6 +83,14 @@ async function init() {
 // prepare github actions
 
 // download dependencies
+
+async function init() {
+  const { projectPath, template, verbose } = await getArguments();
+
+  console.log(projectPath);
+
+  preparePath(projectPath);
+}
 
 (async () => {
   init();
