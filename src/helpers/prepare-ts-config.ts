@@ -5,6 +5,7 @@ import { TsConfigJsonExtended } from "../shared/types";
 /**
  * Prepares the tsconfig.json file for TypeScript configuration.
  * @param {string} projectPath - The path to the project directory.
+ * @throws {Error} Throws an error if any preparation step fails.
  */
 export function prepareTsConfig(projectPath: string): void {
     const tsConfigJson: TsConfigJsonExtended = {
@@ -27,8 +28,7 @@ export function prepareTsConfig(projectPath: string): void {
             path.resolve(projectPath, "tsconfig.json"),
             JSON.stringify(tsConfigJson, null, 2),
         );
-    } catch (err) {
-        console.error(err);
-        process.exit(1);
+    } catch (err: unknown) {
+        throw new Error(err as string);
     }
 }
