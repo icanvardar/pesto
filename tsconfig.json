@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@tsconfig/node18/tsconfig.json",
+  "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "out",
   },
   "exclude": ["node_modules"]
 }
