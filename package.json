@@ -48,8 +48,8 @@
         "*.{js,ts}": [
             "eslint --quiet --fix"
         ],
-        "*.{json,js,ts}": [
-            "prettier --config .prettierrc 'src/**/*.ts' --write"
+        "*.{js,jsx,ts,tsx,json,css,scss,md}": [
+            "prettier --config .prettierrc --write"
         ]
     },
     "dependencies": {
