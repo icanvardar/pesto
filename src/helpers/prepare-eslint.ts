@@ -2,7 +2,11 @@ import { writeFileSync } from "fs";
 import path from "path";
 import { eslintOptions } from "../constants";
 
-export function prepareEslint(projectPath: string) {
+/**
+ * Prepares ESLint configuration files in the project directory.
+ * @param {string} projectPath - The path to the project directory.
+ */
+export function prepareEslint(projectPath: string): void {
     const eslintrcFullPath = path.resolve(projectPath, ".eslintrc");
     const eslintIgnoreFullPath = path.resolve(projectPath, ".eslintignore");
     const eslintIgnore = `

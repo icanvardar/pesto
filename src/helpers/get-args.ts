@@ -2,7 +2,10 @@ import { Args, TemplateType } from "../shared/types";
 import { parseArgs } from "util";
 import { generatePath } from "./generate-path";
 
-// get arguments
+/**
+ * Asynchronously retrieves command line arguments.
+ * @returns {Promise<Args>} The parsed command line arguments.
+ */
 export async function getArgs(): Promise<Args> {
     const { values, positionals } = parseArgs({
         options: {

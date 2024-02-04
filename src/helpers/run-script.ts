@@ -3,7 +3,13 @@ import cp from "child_process";
 
 const exec = util.promisify(cp.exec);
 
-export async function runScript(command: string) {
+/**
+ * Executes a shell command asynchronously.
+ * @param {string} command - The shell command to execute.
+ * @returns {Promise<string>} A Promise that resolves with the stdout of the command.
+ * @throws {Error} Throws an error if the command execution fails.
+ */
+export async function runScript(command: string): Promise<string> {
     try {
         const { stdout, stderr } = await exec(command);
 

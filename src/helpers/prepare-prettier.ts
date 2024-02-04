@@ -2,6 +2,10 @@ import { writeFileSync } from "fs";
 import path from "path";
 import { prettierOptions } from "../constants";
 
+/**
+ * Prepares Prettier configuration files in the project directory.
+ * @param {string} projectPath - The path to the project directory.
+ */
 export function preparePrettier(projectPath: string) {
     const eslintrcFullPath = path.resolve(projectPath, ".prettierrc");
     const prettierIgnoreFullPath = path.resolve(projectPath, ".prettierignore");

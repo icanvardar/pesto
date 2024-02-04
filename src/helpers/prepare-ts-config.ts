@@ -2,8 +2,11 @@ import { writeFileSync } from "fs";
 import path from "path";
 import { TsConfigJsonExtended } from "../shared/types";
 
-// prepare tsconfig,json file
-export function prepareTsConfig(projectPath: string) {
+/**
+ * Prepares the tsconfig.json file for TypeScript configuration.
+ * @param {string} projectPath - The path to the project directory.
+ */
+export function prepareTsConfig(projectPath: string): void {
     const tsConfigJson: TsConfigJsonExtended = {
         $schema: "https://json.schemastore.org/tsconfig",
         extends: "@tsconfig/recommended/tsconfig.json",

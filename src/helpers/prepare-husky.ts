@@ -1,7 +1,11 @@
 import { mkdirSync, writeFileSync } from "fs";
 import path from "path";
 
-export function prepareHusky(projectPath: string) {
+/**
+ * Prepares Husky configuration for pre-commit hooks in the project directory.
+ * @param {string} projectPath - The path to the project directory.
+ */
+export function prepareHusky(projectPath: string): void {
     const huskyFolder = path.resolve(projectPath, ".husky");
     const preCommitFileFullPath = path.resolve(huskyFolder, "pre-commit");
 

@@ -3,7 +3,13 @@ import path from "path";
 import { PackageJson } from "type-fest";
 import { dependencies } from "../constants";
 
-export function preparePackageJson(projectName: string, projectPath: string, isTs: boolean) {
+/**
+ * Prepares the package.json file with necessary configurations.
+ * @param {string} projectName - The name of the project.
+ * @param {string} projectPath - The path to the project directory.
+ * @param {boolean} isTs - A flag indicating whether the project is TypeScript-based.
+ */
+export function preparePackageJson(projectName: string, projectPath: string, isTs: boolean): void {
     const packageJson: PackageJson = {
         name: projectName,
         description: "My node package!",
