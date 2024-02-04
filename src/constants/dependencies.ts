@@ -1,10 +1,9 @@
-type Dependency = Record<string, string>;
+import { Dependencies, Dependency } from "../shared/types";
 
-interface Dependencies {
-  [key: string]: Dependency;
-  tsDevDependencies: Dependency;
-  basicDevDependencies: Dependency;
-}
+const basicDevDependencies: Dependency = {
+  copyfiles: "^2.4.1",
+  nodemon: "^2.0.20",
+};
 
 const tsDevDependencies: Dependency = {
   "@types/node": "^18.11.9",
@@ -14,14 +13,9 @@ const tsDevDependencies: Dependency = {
   typescript: "^4.8.4",
 };
 
-const basicDevDependencies: Dependency = {
-  copyfiles: "^2.4.1",
-  nodemon: "^2.0.20",
-};
-
 const dependencies = {
-  tsDevDependencies,
   basicDevDependencies,
+  tsDevDependencies,
 } satisfies Dependencies;
 
 export default dependencies;
