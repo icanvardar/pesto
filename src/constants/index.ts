@@ -1,3 +1,4 @@
 import dependencies from "./dependencies";
+import pseudoCodes from "./pseudoCodes";
 
-export { dependencies };
+export { dependencies, pseudoCodes };
