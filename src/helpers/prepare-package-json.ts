@@ -3,7 +3,7 @@ import path from "path";
 import { PackageJson } from "type-fest";
 import { dependencies } from "../constants";
 
-export function preparePackageJson(projectName: string, projectPath: string, isTs: string) {
+export function preparePackageJson(projectName: string, projectPath: string, isTs: boolean) {
   const packageJson: PackageJson = {
     name: projectName,
     description: "My node package!",
