@@ -1,6 +1,6 @@
 {
     "name": "make-pesto",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Pesto is a command-line tool to assist in creating Node.js packages. 🔪🌿",
     "author": {
         "name": "Can Vardar",
