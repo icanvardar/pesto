@@ -6,6 +6,7 @@ import { pseudoCodes } from "../constants";
  * Prepares the source directory and files in the project.
  * @param {string} projectPath - The path to the project directory.
  * @param {boolean} isTs - A flag indicating whether the project is TypeScript-based.
+ * @throws {Error} Throws an error if any preparation step fails.
  */
 export function prepareSrc(projectPath: string, isTs: boolean): void {
     const indexFilePath = isTs ? ".ts" : ".js";
@@ -16,8 +17,7 @@ export function prepareSrc(projectPath: string, isTs: boolean): void {
     try {
         mkdirSync(srcFolderPath);
         writeFileSync(indexFileFullPath, pseudoCode);
-    } catch (err) {
-        console.error(err);
-        process.exit(1);
+    } catch (err: unknown) {
+        throw new Error(err as string);
     }
 }
