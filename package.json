@@ -1,7 +1,7 @@
 {
     "name": "pesto",
     "version": "0.1.0",
-    "description": "Minimal package development CLI. 🔪🌿",
+    "description": "Pesto is a command-line tool to assist in creating Node.js packages. 🔪🌿",
     "author": {
         "name": "Can Vardar",
         "url": "https://github.com/icanvardar",
