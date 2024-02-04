@@ -5,6 +5,7 @@ import { prettierOptions } from "../constants";
 /**
  * Prepares Prettier configuration files in the project directory.
  * @param {string} projectPath - The path to the project directory.
+ * @throws {Error} Throws an error if any preparation step fails.
  */
 export function preparePrettier(projectPath: string) {
     const eslintrcFullPath = path.resolve(projectPath, ".prettierrc");
@@ -19,8 +20,7 @@ export function preparePrettier(projectPath: string) {
     try {
         writeFileSync(eslintrcFullPath, JSON.stringify(prettierOptions));
         writeFileSync(prettierIgnoreFullPath, prettierIgnore, { encoding: "utf-8" });
-    } catch (err) {
-        console.error(err);
-        process.exit(1);
+    } catch (err: unknown) {
+        throw new Error(err as string);
     }
 }
