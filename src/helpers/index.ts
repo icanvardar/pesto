@@ -1,5 +1,6 @@
 import { generatePath } from "./generate-path";
 import { getArgs } from "./get-args";
+import { installDependencies } from "./install-dependencies";
 import { prepareEslint } from "./prepare-eslint";
 import { prepareHusky } from "./prepare-husky";
 import { preparePackageJson } from "./prepare-package-json";
@@ -16,6 +17,7 @@ import { runScript } from "./run-script";
 export {
     generatePath,
     getArgs,
+    installDependencies,
     prepareEslint,
     prepareHusky,
     preparePackageJson,

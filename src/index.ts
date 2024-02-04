@@ -1,5 +1,5 @@
 import path from "path";
-import { getArgs, prepareTemplate } from "./helpers";
+import { getArgs, installDependencies, prepareTemplate } from "./helpers";
 
 /**
  * Initializes a new project based on the provided arguments.
@@ -17,6 +17,9 @@ async function init() {
 
         // Prepare the project template
         await prepareTemplate(projectName, projectPath, isTs);
+
+        // Install dependencies
+        await installDependencies(projectPath);
     } catch (err: unknown) {
         // Handle any errors
         throw new Error(err as unknown as string);
