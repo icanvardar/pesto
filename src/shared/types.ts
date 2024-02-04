@@ -1,30 +1,7 @@
-import ts from "typescript";
+import type { TsConfigJson } from "type-fest";
 
-type CompilerOptions = typeof ts.parseCommandLine extends (
-  ...args: any[]
-) => infer TResult
-  ? TResult extends { options: infer TOptions }
-    ? TOptions
-    : never
-  : never;
-  
-type TypeAcquisition = typeof ts.parseCommandLine extends (
-  ...args: any[]
-) => infer TResult
-  ? TResult extends { typeAcquisition?: infer TTypeAcquisition }
-    ? TTypeAcquisition
-    : never
-  : never;
-
-export interface TSConfig {
+export interface TsConfigJsonExtended extends TsConfigJson {
   $schema: string;
-  compilerOptions: CompilerOptions;
-  exclude: string[];
-  compileOnSave?: boolean;
-  extends: string;
-  files?: string[];
-  include: string[];
-  typeAcquisition?: TypeAcquisition;
   "ts-node": {
     files: boolean;
   };
