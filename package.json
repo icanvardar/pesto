@@ -10,7 +10,7 @@
     "keywords": [
         "pesto"
     ],
-    "license": "ISC",
+    "license": "MIT",
     "main": "out/src/index.js",
     "bin": {
         "make-pesto": "out/src/index.js"
