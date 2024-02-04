@@ -1,7 +1,10 @@
-import { execSync, spawn, spawnSync } from "child_process";
 import { parseArgs } from "util";
 import path from "path";
-import { existsSync, mkdirSync } from "fs";
+import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { $ } from "execa";
+import ts from "typescript";
+
+const $$ = $({ stdio: "inherit" });
 
 type TemplateType = "basic" | "typescript";
 
@@ -11,8 +14,37 @@ interface Args {
   verbose: boolean;
 }
 
+type CompilerOptions = typeof ts.parseCommandLine extends (
+  ...args: any[]
+) => infer TResult
+  ? TResult extends { options: infer TOptions }
+    ? TOptions
+    : never
+  : never;
+type TypeAcquisition = typeof ts.parseCommandLine extends (
+  ...args: any[]
+) => infer TResult
+  ? TResult extends { typeAcquisition?: infer TTypeAcquisition }
+    ? TTypeAcquisition
+    : never
+  : never;
+
+interface TSConfig {
+  $schema: string;
+  compilerOptions: CompilerOptions;
+  exclude: string[];
+  compileOnSave?: boolean;
+  extends: string;
+  files?: string[];
+  include: string[];
+  typeAcquisition?: TypeAcquisition;
+  "ts-node": {
+    files: boolean;
+  }
+}
+
 // generate path from positionals
-function generatePath(pathToCheck: string) {
+function generatePath(pathToCheck: string): string {
   try {
     return path.resolve(pathToCheck);
   } catch (error) {
@@ -52,17 +84,40 @@ async function getArguments(): Promise<Args> {
 }
 
 // prepare path
-function preparePath(projectPath: string) {
+async function prepareProjectPath(projectPath: string): Promise<void> {
   const folderExist = existsSync(projectPath);
 
   if (!folderExist) {
     mkdirSync(projectPath);
   } else {
-    execSync(`rm -rf ${projectPath}/*`);
+    await $$`rm -rf ${projectPath}/*`;
   }
 }
 
 // validate template
+function prepareTsConfig(projectPath: string) {
+  const tsConfig: TSConfig = {
+    $schema: "https://json.schemastore.org/tsconfig",
+    extends: "@tsconfig/recommended/tsconfig.json",
+    "ts-node": {
+      files: true,
+    },
+    compilerOptions: {
+      outDir: "dist",
+      allowJs: true,
+      declaration: true,
+    },
+    include: ["src/**/*"],
+    exclude: ["node_modules"]
+  }
+  
+  try {
+    writeFileSync(path.resolve(projectPath, "tsconfig.json"), JSON.stringify(tsConfig, null, 2));
+  } catch(err) {
+    console.error(err);
+    process.exit(1);
+  }
+}
 
 // differentiate npm yarn pnpm
 
@@ -80,6 +135,8 @@ function preparePath(projectPath: string) {
 
 // prepare husky
 
+// prepare chai files
+
 // prepare github actions
 
 // download dependencies
@@ -89,7 +146,16 @@ async function init() {
 
   console.log(projectPath);
 
-  preparePath(projectPath);
+  prepareProjectPath(projectPath);
+
+  switch(template) {
+    case "basic":
+      console.log("basic template!");
+    case "typescript":
+      prepareTsConfig(projectPath);
+    default:
+      console.log("default");
+  }
 }
 
 (async () => {
