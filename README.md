@@ -4,7 +4,7 @@ Pesto is a command-line tool to assist in creating Node.js packages. It provides
 
 [license]: https://opensource.org/licenses/MIT
 [license-badge]: https://camo.githubusercontent.com/92ef5e7ebc8632fef4862d243dda949198df87928b72df01444fc213163a7e53/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f496c65726961796f2f6d61726b646f776e2d6261646765733f7374796c653d666f722d7468652d6261646765
-[npm]: https://opensource.org/licenses/MIT
+[npm]: https://www.npmjs.com/package/make-pesto
 [npm-badge]: https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white
 
 ## Usage
