@@ -1,5 +1,20 @@
 {
     "name": "pesto",
+    "version": "0.1.0",
+    "description": "Minimal package development CLI. 🔪🌿",
+    "author": {
+        "name": "Can Vardar",
+        "url": "https://github.com/icanvardar",
+        "email": "ismailcanvardar@gmail.com"
+    },
+    "keywords": [
+        "pesto"
+    ],
+    "license": "ISC",
+    "main": "out/src/index.js",
+    "bin": {
+        "make-pesto": "out/src/index.js"
+    },
     "devDependencies": {
         "@swc/cli": "^0.3.6",
         "@swc/core": "^1.3.107",
@@ -17,12 +32,6 @@
         "nodemon": "^3.0.3",
         "prettier": "^3.2.5",
         "typescript": "^5.3.3"
-    },
-    "peerDependencies": {
-        "typescript": "^5.0.0"
-    },
-    "bin": {
-        "pesto": "out/src/index.js"
     },
     "scripts": {
         "start": "node out/src/index.js",
@@ -43,12 +52,6 @@
             "prettier --config .prettierrc 'src/**/*.ts' --write"
         ]
     },
-    "description": "",
-    "version": "1.0.0",
-    "main": "out/src/index.js",
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
     "dependencies": {
         "semver": "^7.5.4",
         "type-fest": "^4.10.2"
