@@ -11,15 +11,15 @@ import { prepareTsConfig } from "./prepare-ts-config";
 import { runScript } from "./run-script";
 
 export {
-  generatePath,
-  getArgs,
-  prepareEslint,
-  prepareHusky,
-  preparePackageJson,
-  preparePath,
-  preparePrettier,
-  prepareSrc,
-  prepareTemplate,
-  prepareTsConfig,
-  runScript
+    generatePath,
+    getArgs,
+    prepareEslint,
+    prepareHusky,
+    preparePackageJson,
+    preparePath,
+    preparePrettier,
+    prepareSrc,
+    prepareTemplate,
+    prepareTsConfig,
+    runScript,
 };

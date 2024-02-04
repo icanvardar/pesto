@@ -13,8 +13,8 @@ const pseudoCodeForTypescript: PseudoCode = `
 `;
 
 const pseudoCodes = {
-  pseudoCodeForBasic,
-  pseudoCodeForTypescript,
+    pseudoCodeForBasic,
+    pseudoCodeForTypescript,
 } satisfies PseudoCodes;
 
 export default pseudoCodes;
