@@ -10,6 +10,9 @@ import { prepareTemplate } from "./prepare-template";
 import { prepareTsConfig } from "./prepare-ts-config";
 import { runScript } from "./run-script";
 
+/* -------------------------------------------------------------------------- */
+/*                              EXPORTING HELPERS                             */
+/* -------------------------------------------------------------------------- */
 export {
     generatePath,
     getArgs,
