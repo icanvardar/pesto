@@ -5,6 +5,7 @@ import { generatePath } from "./generate-path";
 /**
  * Asynchronously retrieves command line arguments.
  * @returns {Promise<Args>} The parsed command line arguments.
+ * @throws {Error} Throws an error if any preparation step fails.
  */
 export async function getArgs(): Promise<Args> {
     const { values, positionals } = parseArgs({
@@ -25,12 +26,15 @@ export async function getArgs(): Promise<Args> {
     });
 
     const { template, verbose } = values;
+    try {
+        const projectPath = generatePath(positionals[0]);
 
-    const projectPath = generatePath(positionals[0]);
-
-    return {
-        projectPath: projectPath!,
-        template: template! as TemplateType,
-        verbose: verbose!,
-    };
+        return {
+            projectPath: projectPath!,
+            template: template! as TemplateType,
+            verbose: verbose!,
+        };
+    } catch (err: unknown) {
+        throw new Error(err as string);
+    }
 }
