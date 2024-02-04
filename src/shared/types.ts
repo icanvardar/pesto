@@ -1,5 +1,8 @@
 import type { TsConfigJson } from "type-fest";
 
+/* -------------------------------------------------------------------------- */
+/*                            TYPE IMPLEMENTATIONS                            */
+/* -------------------------------------------------------------------------- */
 export interface TsConfigJsonExtended extends TsConfigJson {
     $schema: string;
     "ts-node": {
