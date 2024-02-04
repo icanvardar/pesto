@@ -7,15 +7,16 @@
         "@tsconfig/recommended": "^1.0.3",
         "@types/node": "^20.11.16",
         "@types/semver": "^7.5.6",
+        "@typescript-eslint/eslint-plugin": "^6.19.1",
         "chokidar": "^3.5.3",
         "concurrently": "^8.2.2",
-        "nodemon": "^3.0.3",
-        "typescript": "^5.3.3",
-        "@typescript-eslint/eslint-plugin": "^6.19.1",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-node": "^11.1.0",
         "husky": "^9.0.6",
-        "lint-staged": "^15.2.0"
+        "lint-staged": "^15.2.0",
+        "nodemon": "^3.0.3",
+        "prettier": "^3.2.5",
+        "typescript": "^5.3.3"
     },
     "peerDependencies": {
         "typescript": "^5.0.0"
@@ -30,6 +31,7 @@
         "watch:dev": "nodemon --watch \"out/**/*\" -e js ./out/index.js",
         "clean": "rm -rf out",
         "build": "pnpm clean && npx swc src -d out && sh src/tasks/put_shebang_line.sh out/src/index.js",
+        "prepare": "husky",
         "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
         "lint": "eslint --quiet --fix"
     },
