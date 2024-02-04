@@ -1,11 +1,61 @@
 {
-  "name": "pesto",
-  "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  }
+    "name": "make-pesto",
+    "version": "0.1.1",
+    "description": "Pesto is a command-line tool to assist in creating Node.js packages. 🔪🌿",
+    "author": {
+        "name": "Can Vardar",
+        "url": "https://github.com/icanvardar",
+        "email": "ismailcanvardar@gmail.com"
+    },
+    "keywords": [
+        "pesto",
+        "make-pesto"
+    ],
+    "license": "MIT",
+    "main": "out/src/index.js",
+    "bin": {
+        "make-pesto": "out/src/index.js"
+    },
+    "devDependencies": {
+        "@swc/cli": "^0.3.6",
+        "@swc/core": "^1.3.107",
+        "@tsconfig/node18": "^18.2.2",
+        "@tsconfig/recommended": "^1.0.3",
+        "@types/node": "^20.11.16",
+        "@types/semver": "^7.5.6",
+        "@typescript-eslint/eslint-plugin": "^6.19.1",
+        "chokidar": "^3.5.3",
+        "concurrently": "^8.2.2",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-node": "^11.1.0",
+        "husky": "^9.0.6",
+        "lint-staged": "^15.2.0",
+        "nodemon": "^3.0.3",
+        "prettier": "^3.2.5",
+        "typescript": "^5.3.3"
+    },
+    "scripts": {
+        "start": "node out/src/index.js",
+        "dev": "concurrently \"pnpm run watch:compile\" \"pnpm run watch:dev\"",
+        "watch:compile": "swc ./index.ts -w -d out",
+        "watch:dev": "nodemon --watch \"out/**/*\" -e js ./out/index.js",
+        "clean": "rm -rf out",
+        "build": "pnpm clean && npx swc src -d out && sh src/tasks/put_shebang_line.sh out/src/index.js",
+        "prepare": "husky",
+        "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+        "lint": "eslint --quiet --fix"
+    },
+    "lint-staged": {
+        "*.{js,ts}": [
+            "eslint --quiet --fix"
+        ],
+        "*.{js,jsx,ts,tsx,json,css,scss,md}": [
+            "prettier --config .prettierrc --write"
+        ]
+    },
+    "dependencies": {
+        "chalk": "4.1.2",
+        "semver": "^7.5.4",
+        "type-fest": "^4.10.2"
+    }
 }
