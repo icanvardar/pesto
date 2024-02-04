@@ -8,6 +8,7 @@ import { dependencies } from "../constants";
  * @param {string} projectName - The name of the project.
  * @param {string} projectPath - The path to the project directory.
  * @param {boolean} isTs - A flag indicating whether the project is TypeScript-based.
+ * @throws {Error} Throws an error if any preparation step fails.
  */
 export function preparePackageJson(projectName: string, projectPath: string, isTs: boolean): void {
     const packageJson: PackageJson = {
@@ -51,8 +52,7 @@ export function preparePackageJson(projectName: string, projectPath: string, isT
             path.resolve(projectPath, "package.json"),
             JSON.stringify(packageJson, null, 2),
         );
-    } catch (err) {
-        console.error(err);
-        process.exit(1);
+    } catch (err: unknown) {
+        throw new Error(err as string);
     }
 }
