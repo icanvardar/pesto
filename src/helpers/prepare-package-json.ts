@@ -12,11 +12,22 @@ export function preparePackageJson(projectName: string, projectPath: string, isT
     files: ["dist/*"],
     license: "MIT",
     devDependencies: {...dependencies.basicDevDependencies},
+    scripts: {
+      "start": "node src/index.js",
+      "dev": "nodemon src/index.js"
+    }
   };
 
   if (isTs) {
     packageJson.devDependencies = {...dependencies.tsDevDependencies};
     packageJson.types = "dist/index.d.ts";
+    packageJson.scripts = {
+      "copy:definitions": "copyfiles -u 1 \"src/**/*.d.ts\" dist",
+      "dev": "ts-node src/index.ts",
+      "start": "node ./dist/index.js",
+      "clean": "rm -rf ./dist",
+      "build": "npm run clean && tsc --declaration && npm run copy:definitions"
+    }
   }
 
   try {
