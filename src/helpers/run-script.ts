@@ -19,6 +19,6 @@ export async function runScript(command: string): Promise<string> {
 
         return stdout;
     } catch (err: unknown) {
-        throw new Error(err as unknown as string);
+        throw new Error(err as string);
     }
 }
