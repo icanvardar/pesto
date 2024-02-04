@@ -16,7 +16,7 @@ export function preparePackageJson(projectName: string, projectPath: string, isT
 
   if (isTs) {
     packageJson.devDependencies = {...dependencies.tsDevDependencies};
-    packageJson.types = "dist/index.d.ts",
+    packageJson.types = "dist/index.d.ts";
   }
 
   try {
