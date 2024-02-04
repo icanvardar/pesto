@@ -8,9 +8,14 @@ import { dependencies } from "../constants";
  * @param {string} projectName - The name of the project.
  * @param {string} projectPath - The path to the project directory.
  * @param {boolean} isTs - A flag indicating whether the project is TypeScript-based.
+ * @returns {string} The path of package.json.
  * @throws {Error} Throws an error if any preparation step fails.
  */
-export function preparePackageJson(projectName: string, projectPath: string, isTs: boolean): void {
+export function preparePackageJson(
+    projectName: string,
+    projectPath: string,
+    isTs: boolean,
+): string {
     const packageJson: PackageJson = {
         name: projectName,
         description: "My node package!",
@@ -48,10 +53,10 @@ export function preparePackageJson(projectName: string, projectPath: string, isT
     }
 
     try {
-        writeFileSync(
-            path.resolve(projectPath, "package.json"),
-            JSON.stringify(packageJson, null, 2),
-        );
+        const fullPath = path.resolve(projectPath, "package.json");
+        writeFileSync(fullPath, JSON.stringify(packageJson, null, 2));
+
+        return fullPath;
     } catch (err: unknown) {
         throw new Error(err as string);
     }

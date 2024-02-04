@@ -45,10 +45,10 @@
         "lint": "eslint --quiet --fix"
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx}": [
+        "*.{js,ts}": [
             "eslint --quiet --fix"
         ],
-        "*.{json,js,ts,jsx,tsx,html}": [
+        "*.{json,js,ts}": [
             "prettier --config .prettierrc 'src/**/*.ts' --write"
         ]
     },
