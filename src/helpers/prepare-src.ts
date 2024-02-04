@@ -1,4 +1,4 @@
-import { mkdirSync, statSync, writeFileSync } from "fs";
+import { mkdirSync, writeFileSync } from "fs";
 import path from "path";
 import { pseudoCodes } from "../constants";
 
