@@ -1,5 +1,8 @@
+import { prepareEslint } from "./prepare-eslint";
+import { prepareHusky } from "./prepare-husky";
 import { preparePackageJson } from "./prepare-package-json";
 import { preparePath } from "./prepare-path";
+import { preparePrettier } from "./prepare-prettier";
 import { prepareSrc } from "./prepare-src";
 import { prepareTsConfig } from "./prepare-ts-config";
 
@@ -16,4 +19,7 @@ export async function prepareTemplate(projectName: string, projectPath: string, 
 
   preparePackageJson(projectName, projectPath, isTs);
   prepareSrc(projectPath, isTs);
+  prepareEslint(projectPath);
+  preparePrettier(projectPath);
+  prepareHusky(projectPath);
 }
